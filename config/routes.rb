@@ -7,11 +7,14 @@ Rails.application.routes.draw do
   get 'tweets/new'
   post "tweets" => "tweets#create"
 
-  get 'users/index'
-  get "users/show/:id" => "users#show"
-
   # devise
-  devise_for :users
+  # deviseで追加したカラムを更新出来るようにするために新たに定義したコントローラーを参照
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
+
+  # resourcesは7つのルーティングを自動生成する
+  resources :users, only: [:index, :show]
 end
 
 # postはdbを変更する際に使用する。それ以外はgetを使用
