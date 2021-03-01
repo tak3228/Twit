@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<%# 共通レイアウト%>
+<html>
+  <head>
+    <title>Twit</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <%# ~pathはrails routesで確認可 %>
+	<%= link_to "トップ", root_path, class: "btn btn-lg btn-primary" %>
+	<%= link_to "アカウント作成", new_user_registration_path, class: "btn btn-lg btn-primary" %>
+	<%= link_to "ログイン", new_user_session_path, class: "btn btn-lg btn-primary" %>
+	<%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-lg btn-primary" %>
+
+    <%# フラッシュメッセージ表示%>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <%# yieldはrubyの分割メソッド%>
+    <%= yield %>
+
+  </body>
+</html>
