@@ -1,10 +1,17 @@
-<h1>マイページ</h1>
+<h4 class="text-center"><%= @user.name %></h4>
 
 <ul class="list-group">
-  <li class="list-group-item"><%=@user.name %></li>
+  <li class="list-group-item">メールアドレス：<%= @user.email %></li>
 </ul>
 <ul class="list-group">
-  <li class="list-group-item"><%=@user.email %></li>
+  <li class="list-group-item">アカウント作成日：<%= l @user.created_at, format: :short %></li>
 </ul>
 
-<%= link_to "プロフィール編集", edit_user_registration_path, class: "btn btn-outline-info" %>
+<% if current_user.id == @user.id %>
+  <%= link_to "プロフィール編集", edit_user_registration_path, class: "btn btn-outline-info" %>
+<% else %>
+  <button type="button" class="btn btn-outline-success">＋フォロー</button>
+<% end %>
+
+<%= link_to "ユーザ一覧", users_path, class: "btn btn-outline-info" %>
+<%= link_to "戻る", :back, class: "btn btn-outline-secondary" %>
