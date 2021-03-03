@@ -1,7 +1,7 @@
 <h4 class="text-center"><%= @user.name %></h4>
 
 <ul class="list-group">
-  <li class="list-group-item">メールアドレス：<%= @user.email %></li>
+  <li class="list-group-item">自己紹介：<%= @user.bio %></li>
 </ul>
 <ul class="list-group">
   <li class="list-group-item">アカウント作成日：<%= l @user.created_at, format: :short %></li>
@@ -10,7 +10,13 @@
 <% if current_user.id == @user.id %>
   <%= link_to "プロフィール編集", edit_user_registration_path, class: "btn btn-outline-info" %>
 <% else %>
-  <button type="button" class="btn btn-outline-success">＋フォロー</button>
+  <div id='follow-button-<%= @user.id %>'>
+    <% if current_user.following?(@user) %>
+      <%= render 'relationships/unfollow_button', user: @user %>
+    <% else %>
+      <%= render 'relationships/follow_button', user: @user %>
+    <% end %>
+  </div>
 <% end %>
 
 <%= link_to "ユーザ一覧", users_path, class: "btn btn-outline-info" %>

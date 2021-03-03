@@ -6,16 +6,20 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-@user = User.new
-@user.name = 'mason'
-@user.mail = 'hirayama@gmail.com'
-@user.location = 'Fukuoka, Japan'
-@user.about = 'Hello, I am mason. I am from database!'
-@user.save
+# Users deviseのパスワードが特殊
+users = [
+  { name: 'Mason', email: 'hirayama@on-sight.ne.jp', password: 'taka3228' },
+  { name: 'Adam', email: 'hirayama+1@on-sight.ne.jp', password: 'taka3228' },
+  { name: 'Butter', email: 'hirayama+2@on-sight.ne.jp', password: 'taka3228' },
+  { name: 'Cherry', email: 'hirayama+3@on-sight.ne.jp', password: 'taka3228' },
+]
+users.each do |record|
+  User.create!(record) unless User.find_by(email: record[:email])
+end
 
-@user = User.new
-@user.name = 'test'
-@user.mail = 'hirayama2@gmail.com'
-@user.location = 'Tottori, Japan'
-@user.about = 'Nice to meet you. I am from database!'
-@user.save
+# @user = User.new
+# @user.name = 'Adam'
+# @user.email = 'hirayama+1@on-sight.ne.jp'
+# @user.encrypted_password = 'taka3228'
+# @user.bio = 'English'
+# @user.save

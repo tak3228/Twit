@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_26_132357) do
+ActiveRecord::Schema.define(version: 2021_03_03_055129) do
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "follower_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
+    t.index ["user_id", "follower_id"], name: "index_relationships_on_user_id_and_follower_id", unique: true
+    t.index ["user_id"], name: "index_relationships_on_user_id"
+  end
 
   create_table "tweets", force: :cascade do |t|
     t.string "title"
@@ -20,7 +30,8 @@ ActiveRecord::Schema.define(version: 2021_02_26_132357) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name", default: "名無し", null: false
+    t.string "name", null: false
+    t.string "bio", default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -46,4 +57,5 @@ ActiveRecord::Schema.define(version: 2021_02_26_132357) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "relationships", "users", column: "follower_id"
 end

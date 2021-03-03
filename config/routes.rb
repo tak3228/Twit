@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   # resourcesは7つのルーティングを自動生成する
   resources :users, only: [:index, :show]
+  resources :relationships, only: %i[create destroy]
 end
 
 # postはdbを変更する際に使用する。それ以外はgetを使用
