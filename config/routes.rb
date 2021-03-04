@@ -2,10 +2,10 @@ Rails.application.routes.draw do
   # /で表示されるルートパス
   root 'home#index'
 
-  get 'tweets/index'
-  get 'tweets/show'
-  get 'tweets/new'
-  post "tweets" => "tweets#create"
+  # tweetごとにcommentのルートを作成する
+  resources :tweets, only: %i[index new create show destroy] do
+    resources :comments, only: %i[create destroy]
+  end
 
   # devise
   # deviseで追加したカラムを更新出来るようにするために新たに定義したコントローラーを参照
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   }
 
   # resourcesは7つのルーティングを自動生成する
-  resources :users, only: [:index, :show]
+  resources :users, only: %i[index show]
   resources :relationships, only: %i[create destroy]
 end
 

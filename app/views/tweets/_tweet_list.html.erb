@@ -1,0 +1,14 @@
+<% @tweets.each do |tweet| %>
+  <%= link_to tweet_path(tweet), method: :get do %>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <div class="contents row" >
+          <%# Twitterの相対時間フォーマット %>
+          <%= tweet.user.name %>・<%= time_ago_in_words(tweet.created_at) %>
+        </div>
+        <%= simple_format(tweet.text) %>
+      </li>
+    </ul>
+  <% end %>
+<% end %>
+<%= paginate(@tweets) %>

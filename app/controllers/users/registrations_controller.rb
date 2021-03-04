@@ -7,6 +7,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update_resource(resource, params)
     resource.update_without_password(params)
   end
+
   # deviseで更新後にマイページへ遷移する
   def after_update_path_for(resource)
     user_path(resource.id)

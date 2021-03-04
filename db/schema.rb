@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_03_055129) do
+ActiveRecord::Schema.define(version: 2021_03_04_052030) do
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "tweet_id"
+    t.string "text"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tweet_id"], name: "index_comments_on_tweet_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
   create_table "relationships", force: :cascade do |t|
     t.integer "user_id"
@@ -23,10 +33,11 @@ ActiveRecord::Schema.define(version: 2021_03_03_055129) do
   end
 
   create_table "tweets", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
+    t.integer "user_id"
+    t.string "text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_tweets_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

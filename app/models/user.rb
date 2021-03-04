@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  # ツイート機能用のアソシエーション
+  has_many :tweets
+  has_many :commnets
   # フォロー機能用のアソシエーション(関連付け)
   # has_manyは複数形
   # throughは中間テーブルの設定

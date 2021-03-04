@@ -18,8 +18,13 @@
 
     <%# ログインしていればマイページへ %>
     <% if user_signed_in? %>
-      <%= link_to "マイページ", user_path(current_user.id), class: "btn btn-outline-success" %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-secondary" %>
+      <%= link_to "プロフィール", user_path(current_user.id), class: "btn btn-outline-success" %>
+      <%= link_to "ホーム", tweets_path, class: "btn btn-outline-info" %>
+      <%= link_to "ユーザ一覧", users_path, class: "btn btn-outline-info" %>
+      <%= link_to "ツイートする", new_tweet_path, class: "btn btn-outline-info" %>
+      <%# :backだと1つしか戻れないのでjsで1つ以上前へ戻る %>
+      <%= link_to "戻る", 'javascript:history.back()', class: "btn btn-outline-secondary" %>
     <% else %>
       <%= link_to "ログイン", new_user_session_path, class: "btn btn-lg btn-primary" %>
     <% end %>
@@ -30,8 +35,10 @@
     <p class="notice alert-success"><%= notice %></p>
     <p class="notice alert-danger"><%= alert %></p>
 
+    <div class="center-block">
     <%# yieldはrubyの分割メソッド%>
     <%= yield %>
+    </div>
 
   </body>
 </html>

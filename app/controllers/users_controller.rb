@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: ['show']
+  before_action :set_user, only: %i[show users_tweets show_tweets]
   before_action :exists_user?, only: ['show']
 
   def index
@@ -8,6 +8,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    # 自身のツイートのみを抽出
+    @tweets = Tweet.where(user_id: @user.id).all.order('created_at DESC').page(params[:page]).per(20)
   end
 
   private

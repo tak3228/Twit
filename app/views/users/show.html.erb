@@ -1,14 +1,25 @@
 <h4 class="text-center"><%= @user.name %></h4>
 
-<ul class="list-group">
-  <li class="list-group-item">自己紹介：<%= @user.bio %></li>
-</ul>
-<ul class="list-group">
-  <li class="list-group-item">アカウント作成日：<%= l @user.created_at, format: :short %></li>
-</ul>
+<div class="card">
+  <div class="card-body">
+    <p class="card-text">自己紹介</p>
+  </div>
+  <div class="card-footer">
+    <%= @user.bio %>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <p class="card-text">アカウント作成日</p>
+  </div>
+  <div class="card-footer">
+    <%= l @user.created_at, format: :short %>
+  </div>
+</div>
 
 <% if current_user.id == @user.id %>
-  <%= link_to "プロフィール編集", edit_user_registration_path, class: "btn btn-outline-info" %>
+  <%= link_to "プロフィールを編集", edit_user_registration_path, class: "btn btn-outline-info" %>
 <% else %>
   <div id='follow-button-<%= @user.id %>'>
     <% if current_user.following?(@user) %>
@@ -19,5 +30,4 @@
   </div>
 <% end %>
 
-<%= link_to "ユーザ一覧", users_path, class: "btn btn-outline-info" %>
-<%= link_to "戻る", :back, class: "btn btn-outline-secondary" %>
+<%= render 'tweets/tweet_list' %>

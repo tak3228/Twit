@@ -1,2 +1,35 @@
-<h1>Tweets#show</h1>
-<p>Find me in app/views/tweets/show.html.erb</p>
+<h2>ツイート</h2>
+<div class="name3"><%= link_to @tweet.user.name, user_path(@tweet.user), method: :get %></div>
+<div class="name2"><%= @tweet.created_at.strftime("%H:%M・%Y/%m/%d") %></div>
+<% if user_signed_in? && current_user.id == @tweet.user_id %>
+  <div class="name2">
+    <%= link_to '削除', "/tweets/#{@tweet.id}", method: :delete %>
+  </div>
+<% end %>
+<div class="name3"><%= simple_format(@tweet.text) %></div>
+
+<h2>コメント一覧</h2>
+<% if @comments %>
+  <% @comments.each do |comment| %>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <%= link_to comment.user.name, "/users/#{comment.user_id}" %>
+        <%= comment.created_at.strftime("%H:%M・%Y/%m/%d") %>
+        <% if comment.user_id == current_user.id %>
+          <%= link_to '削除', "/tweets/#{@tweet.id}/comments/#{comment.id}", method: :delete %>
+        <% end %>
+        </div>
+        <div class="name2"><%= comment.text %></div>
+      </li>
+    </ul>
+  <% end %>
+<% end %>
+<br/>
+
+<% if current_user %>
+  <%= form_tag("/tweets/#{@tweet.id}/comments", method: :post) do %>
+    <textarea cols="30" name="text" placeholder="コメントする" rows="2"></textarea>
+    <br/>
+    <input type="submit" value="コメントの投稿">
+  <% end %>
+<% end %>
