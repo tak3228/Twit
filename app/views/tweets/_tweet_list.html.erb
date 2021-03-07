@@ -6,7 +6,9 @@
           <%# Twitterの相対時間フォーマット %>
           <%= tweet.user.name %>・<%= time_ago_in_words(tweet.created_at) %>
         </div>
-        <%= simple_format(tweet.text) %>
+        <div class="contents" >
+          <%= simple_format(tweet.text) %>
+        </div>
       </li>
     </ul>
   <% end %>

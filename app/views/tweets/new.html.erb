@@ -1,12 +1,13 @@
 <h4 class="text-center">つぶやく</h4>
 
+<%= render 'layouts/errors_notice', object: @tweet %>
+
 <%= form_for Tweet.new do |f| %>
   <div class="field">
     <%= f.label :text %><br />
-    <%= f.text_area :text %>
+    <%= f.text_area :text, id: 'text' %>
   </div>
-  <%= f.submit %>
-
+  <%= f.submit id: 'submit' %>
 <% end %>
 
 <%= link_to "キャンセル", :back, class: "btn btn-outline-secondary" %>

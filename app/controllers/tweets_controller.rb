@@ -3,12 +3,19 @@ class TweetsController < ApplicationController
     @tweets = Tweet.all.order('created_at DESC').page(params[:page]).per(20)
   end
 
-  def new; end
+  def new
+    # エラー表示するために必要
+    @tweet = Tweet.new
+  end
 
   def create
-    Tweet.create!(text: tweet_params[:text], user_id: current_user.id)
-    flash[:notice] = '投稿しました'
-    redirect_to user_path(current_user.id)
+    @tweet = Tweet.new(text: tweet_params[:text], user_id: current_user.id)
+    if @tweet.save
+      flash[:notice] = '投稿しました'
+      redirect_to user_path(current_user.id)
+    else
+      render 'tweets/new'
+    end
   end
 
   def destroy

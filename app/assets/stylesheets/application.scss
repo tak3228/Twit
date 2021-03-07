@@ -22,3 +22,24 @@
     width: 100%;
     margin: 0 auto;
 }
+
+// リストのリンクの振る舞いを消す
+.contents {
+    color: black;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+// リストにホバーしたら色を変える
+.list-group-item {
+    background-color: white;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all  0.3s ease;
+}
+.list-group-item:hover {
+    background-color: antiquewhite;
+}
