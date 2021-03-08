@@ -1,0 +1,2 @@
+<%# renderの引数を忘れないように %>
+$("#retweet_<%= @tweet.id %>").html("<%= j(render 'retweets/retweet', tweet: @tweet) %>");

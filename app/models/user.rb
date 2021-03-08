@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # ツイート機能用のアソシエーション
-  has_many :tweets
-  has_many :commnets
+  has_many :tweets, dependent: :destroy
+  has_many :commnets, dependent: :destroy
   # フォロー機能用のアソシエーション(関連付け)
   # has_manyは複数形
   # throughは中間テーブルの設定
@@ -15,7 +15,10 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :user
 
   # いいね機能のアソシエーション
-  has_many :likes
+  has_many :likes, dependent: :destroy
+
+  # RT機能のアソシエーション
+  has_many :retweets, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

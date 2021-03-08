@@ -1,0 +1,16 @@
+<% if Retweet.find_by(user_id: current_user.id, tweet_id: tweet.id) %>
+  <%= link_to tweet_retweet_path(tweet.id, tweet.retweets.ids), method: :delete, remote: true do %>
+    <div class="retweet">
+      <i class="fas fa-retweet"></i>
+      <%# tweetにretweetをアソシエーションしているのでツイートに紐づくretweetのレコードを取れる%>
+      <%= tweet.retweets.length %>
+    </div>
+  <% end %>
+<% else %>
+  <%= link_to tweet_retweets_path(tweet.id), method: :post, remote: true do %>
+    <div class="not_retweet">
+      <i class="fas fa-retweet"></i>
+      <%= tweet.retweets.length %>
+    </div>
+  <% end %>
+<% end %>

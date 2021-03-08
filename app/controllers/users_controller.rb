@@ -9,7 +9,10 @@ class UsersController < ApplicationController
 
   def show
     # 自身のツイートのみを抽出
-    @tweets = Tweet.where(user_id: @user.id).all.order('created_at DESC').page(params[:page]).per(20)
+    # TODO RTの表示
+    tweets = Tweet.where(user_id: @user.id).all.order('created_at DESC')
+    rt = Tweet.joins(:retweets).where(retweets: { user_id: @user.id}).all.order('created_at DESC')
+    @tweets = tweets + rt
   end
 
   private
