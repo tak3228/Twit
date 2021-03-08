@@ -5,6 +5,7 @@ class RelationshipsController < ApplicationController
   end
 
   def destroy
+    # アソシエーションしているので@user.relationshipsで該当ユーザのrelationshipsレコードを取れる
     @user = current_user.relationships.find(params[:id]).follower
     current_user.unfollow(params[:id])
   end

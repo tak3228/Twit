@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   def create
+    # createだとバリデーションにしにくいのでnew,saveを使用
     @comment = Comment.new(text: comment_params[:text],
                            tweet_id: comment_params[:tweet_id],
                            user_id: current_user.id)

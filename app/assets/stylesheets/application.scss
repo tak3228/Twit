@@ -14,7 +14,14 @@
  *= require_self
  */
 
+// my added
 @import "bootstrap";
+$fa-font-path: '@fortawesome/fontawesome-free/webfonts';
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
+@import '@fortawesome/fontawesome-free/scss/solid';
+@import '@fortawesome/fontawesome-free/scss/regular';
+@import '@fortawesome/fontawesome-free/scss/brands';
+@import '@fortawesome/fontawesome-free/scss/v4-shims';
 
 // Twitterからパクった
 .center-block {
@@ -42,4 +49,12 @@ a:hover{
 }
 .list-group-item:hover {
     background-color: antiquewhite;
+}
+
+// いいねの色 from Twitter
+.like {
+    color: rgb(224, 36, 94);
+}
+.not_like {
+    color: rgb(110, 118, 125);
 }

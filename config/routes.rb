@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
+  get 'like/create'
+  get 'like/destroy'
   # /で表示されるルートパス
   root 'home#index'
 
-  # tweetごとにcommentのルートを作成する
+  # tweetごとにcommentとlikeのルートを作成する
   resources :tweets, only: %i[index new create show destroy] do
     resources :comments, only: %i[create destroy]
+    resources :likes, only: %i[create destroy]
   end
 
   # devise

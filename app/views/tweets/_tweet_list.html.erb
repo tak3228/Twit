@@ -1,4 +1,5 @@
 <% @tweets.each do |tweet| %>
+
   <%= link_to tweet_path(tweet), method: :get do %>
     <ul class="list-group">
       <li class="list-group-item">
@@ -12,5 +13,10 @@
       </li>
     </ul>
   <% end %>
+
+<div id="like_<%= tweet.id %>">
+  <%= render "likes/like", tweet: tweet %>
+</div>
+
 <% end %>
 <%= paginate(@tweets) %>

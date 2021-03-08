@@ -1,0 +1,2 @@
+<%# renderの引数を忘れないように %>
+$("#like_<%= @tweet.id %>").html("<%= j(render 'likes/like', tweet: @tweet) %>");

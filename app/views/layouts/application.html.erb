@@ -19,10 +19,19 @@
     <%# ログインしていればマイページへ %>
     <% if user_signed_in? %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-secondary" %>
-      <%= link_to "プロフィール", user_path(current_user.id), class: "btn btn-outline-success" %>
-      <%= link_to "ホーム", tweets_path, class: "btn btn-outline-info" %>
-      <%= link_to "ユーザ一覧", users_path, class: "btn btn-outline-info" %>
-      <%= link_to "ツイートする", new_tweet_path, class: "btn btn-outline-info" %>
+      <%= link_to user_path(current_user.id), class: "btn btn-outline-success" do %>
+        <i class="fas fa-user"></i>
+      <% end%>
+      <%= link_to tweets_path, class: "btn btn-outline-info" do %>
+        <i class="fas fa-home"></i>
+      <% end%>
+      <%= link_to users_path, class: "btn btn-outline-info" do %>
+        <i class="fas fa-users"></i>
+      <% end%>
+      <%= link_to new_tweet_path, class: "btn btn-outline-info" do %>
+        <i class="fal fa-plus"></i>
+        <i class="fas fa-pen"></i>
+      <% end%>
       <%# :backだと1つしか戻れないのでjsで1つ以上前へ戻る %>
       <%= link_to "戻る", 'javascript:history.back()', class: "btn btn-outline-secondary" %>
     <% else %>
@@ -36,8 +45,8 @@
     <p class="notice alert-danger"><%= alert %></p>
 
     <div class="center-block">
-    <%# yieldはrubyの分割メソッド%>
-    <%= yield %>
+      <%# yieldはrubyの分割メソッド%>
+      <%= yield %>
     </div>
 
   </body>
