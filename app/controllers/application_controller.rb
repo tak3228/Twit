@@ -15,8 +15,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  # deviseにカラムを追加
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name bio])
-    devise_parameter_sanitizer.permit(:account_update, keys: %i[name bio])
+    column_array = %i[name bio locate website birthday_at image]
+    devise_parameter_sanitizer.permit :sign_up, keys: column_array
+    devise_parameter_sanitizer.permit :account_update, keys: column_array
   end
 end

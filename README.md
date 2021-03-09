@@ -1,11 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Twitterライクなウェブサイトを作成します
+コメントを沢山書く
 
-Things you may want to cover:
-
-* Ruby version
+* Ruby version : 3.0.0
+* Rails version : 6.1.3
+* Database : sqlite3
 
 * System dependencies
 

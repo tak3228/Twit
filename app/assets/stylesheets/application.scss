@@ -35,6 +35,14 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
     color: black;
 }
 
+.card-link a {
+    color: #6c757d;
+}
+
+.card-link a:hover {
+    text-decoration: underline;
+}
+
 a:hover{
     text-decoration: none;
 }
@@ -65,4 +73,9 @@ a:hover{
 }
 .not_retweet {
     color: rgb(110, 118, 125);
+}
+
+.user-icon {
+    border-radius: 100px;
+    border-style: solid;
 }

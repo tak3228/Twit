@@ -2,7 +2,7 @@ ja:
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
-      short: "%Y/%m/%d"
+      short: "%Y/%m"
   datetime:
     distance_in_words:
       half_a_minute: "30s"

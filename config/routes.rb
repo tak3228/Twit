@@ -19,6 +19,12 @@ Rails.application.routes.draw do
 
   # resourcesは7つのルーティングを自動生成する
   resources :users, only: %i[index show]
+
+  # resources内で作成するとパラメータが:user_idになるため
+  # asで名前付きルートの名前を変えられる
+  get 'users/:id/follows', to: 'users#follows', as: 'follows'
+  get 'users/:id/followers', to: 'users#followers', as: 'followers'
+
   resources :relationships, only: %i[create destroy]
 end
 

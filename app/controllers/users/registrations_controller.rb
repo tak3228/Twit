@@ -15,6 +15,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # deviseに追加したカラムを更新出来るようにする
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[name bio locate website birthday_at image])
   end
 end

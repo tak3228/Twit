@@ -4,6 +4,7 @@
     <ul class="list-group">
       <li class="list-group-item">
         <div class="contents row" >
+          <%= render 'users/prof_image', user: tweet.user, size: "50" %>
           <%# Twitterの相対時間フォーマット %>
           <%= tweet.user.name %>・<%= time_ago_in_words(tweet.created_at) %>
         </div>
@@ -14,15 +15,15 @@
     </ul>
   <% end %>
 
-<%# いいね機能 %>
-<div id="like_<%= tweet.id %>">
-  <%= render "likes/like", tweet: tweet %>
-</div>
+  <%# いいね機能 %>
+  <div id="like_<%= tweet.id %>">
+    <%= render "likes/like", tweet: tweet %>
+  </div>
 
-<%# RT機能 %>
-<div id="retweet_<%= tweet.id %>">
-  <%= render "retweets/retweet", tweet: tweet %>
-</div>
+  <%# RT機能 %>
+  <div id="retweet_<%= tweet.id %>">
+    <%= render "retweets/retweet", tweet: tweet %>
+  </div>
 
 <% end %>
 <%#= paginate(@tweets) %>

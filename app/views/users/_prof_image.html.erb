@@ -1,0 +1,7 @@
+<%# ユーザ画像表示 %>
+
+<% if user.image? %>
+  <%= image_tag user.image.thumb.url, class: "user-icon", size: size %>
+<% else %>
+  <%= image_tag "default.jpg", alt: "user-icon", size: size, class: "user-icon" %>
+<% end %>

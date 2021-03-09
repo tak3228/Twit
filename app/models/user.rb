@@ -27,6 +27,9 @@ class User < ApplicationRecord
 
   validates :name, presence: true
 
+  # CarrierWave
+  mount_uploader :image, ImageUploader
+
   # フォロー機能
   # self には user.follow(other) を実行したとき user が代入されます。
   # つまり、実行した User のインスタンスがself
