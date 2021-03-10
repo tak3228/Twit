@@ -16,12 +16,25 @@ ActiveStorage.start()
 
 require('jquery')
 
-// フォームが入力されたらsubmitを活性化
+// フォームか画像が入力されたらsubmitを活性化
 $(function() {
     if ($('#text').val().length == 0) {
         $('#submit').prop('disabled', true);
     }
     $('#text').on('keydown keyup keypress change', function() {
+        if ( $(this).val().length > 0 ) {
+            $('#submit').prop('disabled', false);
+        } else {
+            $('#submit').prop('disabled', true);
+        }
+    });
+});
+
+$(function() {
+    if ($('#tweet_image').val().length == 0) {
+        $('#submit').prop('disabled', true);
+    }
+    $('#tweet_image').on('keydown keyup keypress change', function() {
         if ( $(this).val().length > 0 ) {
             $('#submit').prop('disabled', false);
         } else {

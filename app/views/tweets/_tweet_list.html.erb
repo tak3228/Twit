@@ -1,29 +1,56 @@
 <% @tweets.each do |tweet| %>
 
-  <%= link_to tweet_path(tweet), method: :get do %>
-    <ul class="list-group">
-      <li class="list-group-item">
-        <div class="contents row" >
+  <ul class="list-group">
+    <li class="list-group-item">
+
+      <div class="gray" >
+        <%= link_to user_path(tweet.user.id), method: :get do %>
           <%= render 'users/prof_image', user: tweet.user, size: "50" %>
           <%# Twitterの相対時間フォーマット %>
-          <%= tweet.user.name %>・<%= time_ago_in_words(tweet.created_at) %>
-        </div>
-        <div class="contents" >
+          <%= tweet.user.name %>
+        <% end %>
+        ・<%= time_ago_in_words(tweet.created_at) %>
+      <% if @rt.include?(tweet) %>
+        ・<i class="fas fa-retweet"></i> RT
+      <% end %>
+      </div>
+
+      <%# 本文 %>
+      <div class="text" >
+        <%= link_to tweet_path(tweet), method: :get do %>
           <%= simple_format(tweet.text) %>
-        </div>
-      </li>
-    </ul>
-  <% end %>
+        <% end %>
+      </div>
 
-  <%# いいね機能 %>
-  <div id="like_<%= tweet.id %>">
-    <%= render "likes/like", tweet: tweet %>
-  </div>
+      <%# 画像を表示 %>
+      <% if tweet.image? %>
+        <%=  link_to tweet.image.url, 'data-lightbox': tweet.image do %>
+          <%= image_tag tweet.image.thumb.url, class: "tweet-img", width: '100%', height: '420px' %>
+        <% end %>
+      <% end %>
 
-  <%# RT機能 %>
-  <div id="retweet_<%= tweet.id %>">
-    <%= render "retweets/retweet", tweet: tweet %>
-  </div>
+      <%# コメント %>
+      <div id="comment_<%= tweet.id %>" class="obj">
+        <%= link_to tweet_path(tweet), method: :get do %>
+          <div class="not_like">
+            <i class="far fa-comment"></i>
+            <%= tweet.comments.length %>
+          <% end %>
+          </div>
+      </div>
+
+      <%# RT機能 %>
+      <div id="retweet_<%= tweet.id %>" class="obj">
+        <%= render "retweets/retweet", tweet: tweet %>
+      </div>
+
+      <%# いいね機能 %>
+      <div id="like_<%= tweet.id %>" class="obj">
+        <%= render "likes/like", tweet: tweet %>
+      </div>
+
+    </li>
+  </ul>
 
 <% end %>
 <%#= paginate(@tweets) %>

@@ -1,9 +1,9 @@
 <% if Like.find_by(user_id: current_user.id, tweet_id: tweet.id) %>
   <%= link_to tweet_like_path(tweet.id, tweet.likes.ids), method: :delete, remote: true do %>
     <div class="like">
-    <i class="fas fa-heart"></i>
-    <%# tweetにlikeをアソシエーションしているのでツイートに紐づくlikeのレコードを取れる%>
-    <%= tweet.likes.length %>
+      <i class="fas fa-heart"></i>
+      <%# tweetにlikeをアソシエーションしているのでツイートに紐づくlikeのレコードを取れる%>
+      <%= tweet.likes.length %>
     </div>
   <% end %>
 <% else %>

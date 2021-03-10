@@ -3,6 +3,7 @@ class TweetsController < ApplicationController
 
   def index
     @tweets = Tweet.all.order('created_at DESC').page(params[:page]).per(20)
+    @rt = Tweet.joins(:retweets).where(retweets: { user_id: current_user.id }).all.order('created_at DESC')
   end
 
   def new
@@ -11,7 +12,7 @@ class TweetsController < ApplicationController
   end
 
   def create
-    @tweet = Tweet.new(text: tweet_params[:text], user_id: current_user.id)
+    @tweet = Tweet.new(text: tweet_params[:text], image: tweet_params[:image], user_id: current_user.id)
     if @tweet.save
       flash[:notice] = '投稿しました'
       redirect_to user_path(current_user.id)
@@ -34,7 +35,7 @@ class TweetsController < ApplicationController
 
   # ストロングパラメータの許可
   def tweet_params
-    params.require(:tweet).permit(:text)
+    params.require(:tweet).permit(:text, :image)
   end
 
   def set_tweet

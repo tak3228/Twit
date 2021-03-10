@@ -16,7 +16,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # my adderd
   # widthとheightにそれぞれ横幅と高さの数値に同じ数値を入れれば正方形になる。
   version :thumb do
-    process :resize_to_fill => [200, 200, gravity = ::Magick::CenterGravity]
+    process :resize_to_fill => [2000, 2000, gravity = ::Magick::CenterGravity]
   end
 
   # 画像の反転防止

@@ -11,8 +11,8 @@ class UsersController < ApplicationController
     # 自身のツイートのみを抽出
     # TODO RTの表示
     tweets = Tweet.where(user_id: @user.id).all.order('created_at DESC')
-    rt = Tweet.joins(:retweets).where(retweets: { user_id: @user.id }).all.order('created_at DESC')
-    @tweets = tweets + rt
+    @rt = Tweet.joins(:retweets).where(retweets: { user_id: @user.id }).all.order('created_at DESC')
+    @tweets = tweets + @rt
     # リレーションにジョインしてフォロワーのUserレコードを取得
     @follower = User.joins(:relationships).where(relationships: { follower_id: @user.id })
   end

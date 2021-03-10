@@ -16,8 +16,10 @@
       <% end %>
     </div>
 
-    <%# ユーザ画像表示 %>
-    <%= render 'users/prof_image', user: @user, size: "150" %>
+    <%# ユーザ画像表示・拡大表示 %>
+    <%=  link_to @user.image.url, 'data-lightbox': @user.image do %>
+      <%= render 'users/prof_image', user: @user, size: "150" %>
+    <% end %>
 
     <h4 class="card-title"><%= @user.name %></h4>
     <p class="card-text"><%= @user.bio %></p>
